@@ -1,28 +1,44 @@
 ---
-title: 'wav2mp3'
-description: 'Pure Go WAV to MP3 converter with LAME 3.100'
-icon: 'music'
+title: 'Telegram Mock AI'
+description: 'Mock Telegram Bot API server with LLM-generated responses'
+icon: 'robot'
 ---
 
-High-quality WAV to MP3 converter. Pure Go, no CGO. LAME 3.100 transpiled to Go. Supports VBR/CBR, ID3v2 tags, cover art.
+Mock Telegram Bot API server that replaces real Telegram with LLM-generated responses. Point your bot at this server instead of api.telegram.org and get realistic AI-powered replies for testing.
 
-<Card title="GitHub" icon="github" href="https://github.com/skrashevich/svk-wav2mp3">Source code</Card>
+<Card title="GitHub" icon="github" href="https://github.com/skrashevich/telegram-mock-ai">Source code</Card>
 
-## Install
+## Key Features
+
+- **Drop-in Replacement** — implements 28 Bot API methods including getMe, sendMessage, getUpdates, sendPhoto, sendDocument, and more.
+- **LLM-Powered Responses** — uses any OpenAI-compatible API to generate contextual replies to bot messages.
+- **Proactive Mode** — simulates users who initiate conversations. Configurable styles: curious, tester, confused, spammer, polite.
+- **Multi-Chat Simulation** — creates private chats, groups, and supergroups with virtual users.
+- **Admin API** — REST endpoints for managing virtual users, chats, and monitoring message flow.
+- **Webhook & Polling** — supports both getUpdates long polling and webhook delivery.
+
+## Quick Start
 
 ```bash
-go install github.com/svk/wav2mp3/cmd/wav2mp3@latest
+# Docker
+docker run -p 8081:8081 -e OPENAI_API_KEY=your-key ghcr.io/skrashevich/telegram-mock-ai
+
+# From source
+go install github.com/skrashevich/telegram-mock-ai@latest
+telegram-mock-ai --openai-key your-key
 ```
 
-## Usage
+Point your bot to `http://localhost:8081/bot<TOKEN>/` instead of `https://api.telegram.org/bot<TOKEN>/`.
 
-```bash
-wav2mp3 -i song.wav
-wav2mp3 -i song.wav --bitrate 320
-wav2mp3 -i song.wav --title "Title" --artist "Artist" --cover cover.jpg
-```
+## Configuration
 
-Supports 8/16/24/32-bit PCM, Mono and Stereo.
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--addr` | `:8081` | Listen address |
+| `--openai-key` | | OpenAI API key |
+| `--openai-model` | `gpt-4` | Model to use |
+| `--proactive` | `false` | Enable proactive messaging |
+| `--style` | `curious` | Proactive message style |
 
 ## License
 
