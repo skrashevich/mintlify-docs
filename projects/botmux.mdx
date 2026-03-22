@@ -1,0 +1,71 @@
+---
+title: 'BotMux'
+description: 'Web-based command center for managing Telegram bots with reverse proxy, routing, and protocol bridges'
+icon: 'robot'
+---
+
+Web-based command center for managing Telegram groups and channels via Bot API, with built-in reverse proxy for legacy webhook bots. Give it a bot token — it discovers which chats the bot is in, whether it has admin privileges, and provides a full-featured web dashboard.
+
+<Card title="GitHub Repository" icon="github" href="https://github.com/skrashevich/botmux">
+  View source code and contribute
+  </Card>
+
+  ## Key Features
+
+  **Multi-Bot Management** — run multiple bots in a single instance. Add bots via CLI or web UI. Each bot can operate in Management mode, Proxy mode, or both simultaneously.
+
+  **Reverse Proxy (Push mode)** — poll Telegram and forward updates as webhook POST requests to legacy bot backends. Supports webhook-style responses back to Telegram API.
+
+  **Long Polling (Pull mode)** — external bots can pull raw Telegram updates from BotMux instead of Telegram directly. Telegram-compatible `/getUpdates` endpoint — just change the API base URL.
+
+  **Inter-Bot Routing (Source-NAT)** — route messages between bots based on text match, user ID, chat ID, or LLM-based smart routing. Supports forward, copy, and drop actions.
+
+  **Protocol Bridges** — bridge Slack, Discord, Meshtastic, and HTTP webhooks to Telegram bots. Bidirectional message translation with threading support.
+
+  **LLM-Based Smart Routing** — uses any OpenAI-compatible API for intelligent message routing decisions.
+
+  **Message Monitoring** — real-time collection with full-text search, reply chains, and soft-deleted message tracking.
+
+  **Analytics** — daily activity, hourly distribution chart, top contributors leaderboard.
+
+  **Admin Actions** — send messages, pin/unpin, delete, ban/unban, promote/demote admins with granular permissions.
+
+  **Audit Log** — every admin action through the web UI is recorded with actor, target, and timestamp.
+
+  ## Quick Start
+
+  ```bash
+  # Docker (recommended)
+  TELEGRAM_BOT_TOKEN="YOUR_TOKEN" docker compose up -d
+
+  # From source
+  go install github.com/skrashevich/botmux@latest
+  ./botmux -token "YOUR_TOKEN"
+  ```
+
+  Open `http://localhost:8080` in your browser. Default login: `admin` / `admin` (password change required on first login).
+
+  ## Command-line Flags
+
+  | Flag | Default | Description |
+  |------|---------|-------------|
+  | `-token` | `""` | Telegram bot token (or `TELEGRAM_BOT_TOKEN` env) |
+  | `-addr` | `:8080` | HTTP server listen address |
+  | `-db` | `botdata.db` | Path to SQLite database file |
+  | `-webhook` | `""` | Set webhook URL for receiving updates |
+  | `-tg-api` | `""` | Custom Telegram API base URL |
+  | `-demo` | `false` | Enable demo mode |
+
+  ## Architecture
+
+  Single Go binary with embedded SPA frontend. SQLite with WAL mode for storage. Each bot runs as a lightweight goroutine with its own polling loop. REST API for all operations.
+
+  ## Requirements
+
+  - Go 1.21+
+  - A Telegram bot token (create via @BotFather)
+  - ~20-30 MB RAM minimum, ~16 MB disk for binary
+
+  ## License
+
+  MIT

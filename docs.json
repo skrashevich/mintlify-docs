@@ -63,7 +63,39 @@
               "api-reference/endpoint/create",
               "api-reference/endpoint/delete",
               "api-reference/endpoint/webhook"
-            ]
+            ],
+                  {
+                          "tab": "Projects",
+                                  "groups": [
+                                            {
+                                                        "group": "Telegram Tools",
+                                                                    "pages": [
+                                                                                  "projects/botmux",
+                                                                                                "projects/telegram-mock-ai"
+                                                                                                            ]
+                                                                                                                      },
+                                                                                                                                {
+                                                                                                                                            "group": "Meshtastic",
+                                                                                                                                                        "pages": [
+                                                                                                                                                                      "projects/meshtastic-firmware-builder",
+                                                                                                                                                                                    "projects/launcherhub-proxy"
+                                                                                                                                                                                                ]
+                                                                                                                                                                                                          },
+                                                                                                                                                                                                                    {
+                                                                                                                                                                                                                                "group": "Go Libraries",
+                                                                                                                                                                                                                                            "pages": [
+                                                                                                                                                                                                                                                          "projects/go-webp",
+                                                                                                                                                                                                                                                                        "projects/wav2mp3"
+                                                                                                                                                                                                                                                                                    ]
+                                                                                                                                                                                                                                                                                              },
+                                                                                                                                                                                                                                                                                                        {
+                                                                                                                                                                                                                                                                                                                    "group": "Networking",
+                                                                                                                                                                                                                                                                                                                                "pages": [
+                                                                                                                                                                                                                                                                                                                                              "projects/goaround-block-mikrotik"
+                                                                                                                                                                                                                                                                                                                                                          ]
+                                                                                                                                                                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                                                                                                                                                                            ]
+                                                                                                                                                                                                                                                                                                                                                                                  }
           }
         ]
       }
