@@ -1,0 +1,50 @@
+---
+title: 'wav2mp3'
+description: 'Pure Go WAV to MP3 converter with LAME 3.100'
+icon: 'music'
+---
+
+High-quality WAV to MP3 converter. Pure Go, no CGO. LAME 3.100 transpiled to Go. Supports VBR/CBR, ID3v2 tags, cover art. Also usable as a Go library.
+
+<Card title="GitHub" icon="github" href="https://github.com/skrashevich/svk-wav2mp3">Source code</Card>
+
+## Key Features
+
+- **Pure Go** — LAME 3.100 encoder transpiled to Go using c2go. No CGO, no external dependencies.
+- **VBR and CBR** — supports both variable and constant bitrate encoding.
+- **ID3v2 Tags** — set title, artist, album, year, and other metadata.
+- **Cover Art** — embed JPEG cover art into MP3 files.
+- **Library Mode** — import as a Go package for programmatic use.
+- **CLI Tool** — command-line utility for quick conversions.
+
+## Install
+
+```bash
+go install github.com/svk/wav2mp3/cmd/wav2mp3@latest
+```
+
+## Usage
+
+```bash
+wav2mp3 -i song.wav
+wav2mp3 -i song.wav --bitrate 320
+wav2mp3 -i song.wav --title "Title" --artist "Artist" --cover cover.jpg
+```
+
+Supports 8/16/24/32-bit PCM, Mono and Stereo.
+
+## Library Usage
+
+```go
+import "github.com/svk/wav2mp3"
+
+err := wav2mp3.Convert("input.wav", "output.mp3", wav2mp3.Options{
+    Bitrate: 192,
+        Title:   "My Song",
+            Artist:  "Artist",
+            })
+            ```
+
+            ## License
+
+            MIT
