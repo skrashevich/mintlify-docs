@@ -1,0 +1,51 @@
+---
+title: 'go-webp'
+description: 'Pure Go WebP encoder/decoder — no CGO, no libwebp'
+icon: 'image'
+---
+
+Pure Go encoder and decoder for WebP. No CGO, no libwebp. Supports VP8 (lossy), VP8L (lossless), VP8X with alpha, animation, and ICC/EXIF/XMP metadata. 363 tests.
+
+<Card title="GitHub" icon="github" href="https://github.com/skrashevich/go-webp">Source code</Card>
+
+## Key Features
+
+- **Pure Go** — no CGO, no external C libraries. Compiles anywhere Go compiles.
+- **VP8 Lossy** — encode and decode lossy WebP images.
+- **VP8L Lossless** — encode and decode lossless WebP images.
+- **VP8X Extended** — alpha channel, animation, ICC color profiles, EXIF and XMP metadata.
+- **Animation** — read and write animated WebP files with frame timing and loop count.
+- **CLI Tool** — `webpconv` command-line utility for batch conversion.
+- **Well Tested** — 363 tests covering encoder, decoder, and metadata handling.
+
+## Install
+
+```bash
+go get github.com/skrashevich/go-webp
+```
+
+## Usage
+
+```go
+// Decode
+img, err := webp.Decode(reader)
+
+// Encode lossy
+err = webp.Encode(writer, img, &webp.Options{Lossy: true, Quality: 80})
+
+// Encode lossless
+err = webp.Encode(writer, img, &webp.Options{Lossy: false})
+```
+
+## CLI Tool
+
+```bash
+go install github.com/skrashevich/go-webp/cmd/webpconv@latest
+
+webpconv -i input.png -o output.webp -quality 80
+webpconv -i input.webp -o output.png
+```
+
+## License
+
+Apache 2.0
