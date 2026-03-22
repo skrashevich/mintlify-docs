@@ -1,25 +1,20 @@
 ---
-title: 'Telegram Mock AI'
-description: 'Mock Telegram Bot API server with LLM-generated responses'
-icon: 'flask-vial'
+title: 'GoAround Block MikroTik'
+description: 'RouterOS route management for domain-based VPN routing'
+icon: 'route'
 ---
 
-Mock server emulating Telegram Bot API with LLM-generated responses. Supports Ollama, OpenAI, Claude, and any compatible endpoint.
+CLI tool for managing MikroTik RouterOS routing entries based on domain name resolutions. Resolves domains to IPs and creates routes through VPN gateways.
 
-<Card title="GitHub" icon="github" href="https://github.com/skrashevich/telegram-mock-ai">Source code</Card>
-
-## Use Cases
-
-Development without Telegram, automated testing, load testing with proactive mode, CI integration via Docker.
+<Card title="GitHub" icon="github" href="https://github.com/skrashevich/goaround-block-mikrotik">Source code</Card>
 
 ## Quick Start
 
 ```bash
-docker compose up -d
+go install github.com/skrashevich/goaround-block-mikrotik@latest
+./goaround-block-mikrotik -address 192.168.88.1 -username admin -password pass -gateway l2tp-out1 -domain instagram.com
 ```
-
-Bot API: `http://localhost:8081` | Admin API: `http://localhost:8082`
 
 ## License
 
-Apache 2.0
+MIT
