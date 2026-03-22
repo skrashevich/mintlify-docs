@@ -1,20 +1,26 @@
 ---
-title: 'GoAround Block MikroTik'
-description: 'RouterOS route management for domain-based VPN routing'
-icon: 'route'
+title: 'go-webp'
+description: 'Pure Go WebP encoder/decoder — no CGO, no libwebp'
+icon: 'image'
 ---
 
-CLI tool for managing MikroTik RouterOS routing entries based on domain name resolutions. Resolves domains to IPs and creates routes through VPN gateways.
+Pure Go encoder and decoder for WebP. No CGO, no libwebp. Supports VP8, VP8L, VP8X with alpha, animation, and ICC/EXIF/XMP metadata. 363 tests.
 
-<Card title="GitHub" icon="github" href="https://github.com/skrashevich/goaround-block-mikrotik">Source code</Card>
+<Card title="GitHub" icon="github" href="https://github.com/skrashevich/go-webp">Source code</Card>
 
-## Quick Start
+## Install
 
 ```bash
-go install github.com/skrashevich/goaround-block-mikrotik@latest
-./goaround-block-mikrotik -address 192.168.88.1 -username admin -password pass -gateway l2tp-out1 -domain instagram.com
+go get github.com/skrashevich/go-webp
+```
+
+## Usage
+
+```go
+img, _ := webp.Decode(reader)
+webp.Encode(writer, img, &webp.Options{Lossy: true, Quality: 80})
 ```
 
 ## License
 
-MIT
+Apache 2.0
