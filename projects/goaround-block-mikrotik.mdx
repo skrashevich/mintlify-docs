@@ -1,0 +1,50 @@
+---
+title: 'goaround-block-mikrotik'
+description: 'MikroTik RouterOS route management for domain-based VPN routing'
+icon: 'network-wired'
+---
+
+Go CLI tool for managing MikroTik RouterOS routes. Resolves domain names to IP addresses and creates static routes through a specified gateway, enabling domain-based VPN routing on MikroTik routers.
+
+<Card title="GitHub" icon="github" href="https://github.com/skrashevich/goaround-block-mikrotik">Source code</Card>
+
+## Key Features
+
+- **Domain-Based Routing** — specify domains and the tool resolves them to IPs, then creates routes via your VPN gateway.
+- **MikroTik API Integration** — connects to RouterOS via the API to manage routes programmatically.
+- **Batch Processing** — reads domain lists from files and processes them in bulk.
+- **Route Cleanup** — can remove previously added routes by comment tag.
+- **DNS Resolution** — resolves domains using system or custom DNS servers.
+- **Dry Run Mode** — preview changes without applying them.
+
+## Quick Start
+
+```bash
+go install github.com/skrashevich/goaround-block-mikrotik@latest
+
+# Add routes for domains through VPN gateway
+goaround-block-mikrotik -router 192.168.88.1 -user admin -pass password \
+  -gateway 10.0.0.1 -domains domains.txt
+  ```
+
+  ## Command-line Flags
+
+  | Flag | Description |
+  |------|-------------|
+  | `-router` | MikroTik router address |
+  | `-user` | RouterOS API username |
+  | `-pass` | RouterOS API password |
+  | `-gateway` | VPN gateway IP for routes |
+  | `-domains` | File with domain list |
+  | `-comment` | Comment tag for managed routes |
+  | `-cleanup` | Remove routes with matching comment |
+  | `-dry-run` | Preview without applying |
+
+  ## Requirements
+
+  - Go 1.21+
+  - MikroTik RouterOS with API enabled
+
+  ## License
+
+  MIT
