@@ -1,4 +1,45 @@
 ---
 title: 'Meshtastic Firmware Builder'
+description: 'Web app for building custom Meshtastic firmware'
+icon: 'microchip'
 ---
 
+Web application for building custom Meshtastic firmware images. Go backend with React frontend, Docker-based PlatformIO compilation, real-time build logs via SSE, and CAPTCHA protection.
+
+<Card title="GitHub" icon="github" href="https://github.com/skrashevich/meshtastic-firmware-builder">Source code</Card>
+
+## Key Features
+
+- **Web-Based Builder** — select your target board, configure options, and build firmware from the browser.
+- **Docker-Based Builds** — PlatformIO runs inside Docker containers for reproducible, isolated builds.
+- **Real-Time Logs** — Server-Sent Events stream build output to the browser in real time.
+- **CAPTCHA Protection** — prevents abuse of the build service with CAPTCHA verification.
+- **Board Selection** — supports all Meshtastic-compatible boards with automatic environment detection.
+- **React Frontend** — modern SPA with board picker, build progress, and firmware download.
+
+## Quick Start
+
+```bash
+# Docker
+docker compose up -d
+
+# From source
+cd backend && go run .
+cd frontend && npm install && npm start
+```
+
+Open http://localhost:3000 in your browser.
+
+## Architecture
+
+The backend is a Go HTTP server that manages build jobs. When a user requests a build, it spawns a Docker container with PlatformIO, compiles the firmware for the selected board, and streams logs back via SSE. The compiled firmware binary is stored and made available for download.
+
+## Requirements
+
+- Go 1.21+
+- Node.js 18+
+- Docker
+
+## License
+
+GPL-3.0
