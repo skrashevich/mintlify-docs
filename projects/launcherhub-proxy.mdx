@@ -1,4 +1,46 @@
 ---
 title: 'Launcherhub Proxy'
+description: 'Proxy server for Meshtastic firmware distribution'
+icon: 'satellite-dish'
 ---
 
+Python/FastAPI proxy server for Meshtastic firmware distribution. Matches devices to firmware builds using family-based device detection and provides partition table parsing for ESP32 targets.
+
+<Card title="GitHub" icon="github" href="https://github.com/skrashevich/launcherhub-proxy">Source code</Card>
+
+## Key Features
+
+- **Family-Based Device Matching** — automatically detects device family from hardware identifiers and maps to correct firmware variant.
+- **Partition Table Parsing** — reads and validates ESP32 partition tables from firmware images.
+- **Firmware Caching** — caches downloaded firmware files to reduce upstream load and improve response times.
+- **FastAPI Backend** — async Python server with automatic OpenAPI docs.
+- **Docker Support** — ready-to-use Docker image for easy deployment.
+
+## Quick Start
+
+```bash
+# Docker
+docker run -p 8000:8000 ghcr.io/skrashevich/launcherhub-proxy
+
+# From source
+pip install -r requirements.txt
+uvicorn main:app --host 0.0.0.0 --port 8000
+```
+
+## API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/firmware/{device}` | GET | Get firmware for device |
+| `/api/devices` | GET | List supported devices |
+| `/api/families` | GET | List device families |
+| `/health` | GET | Health check |
+
+## Requirements
+
+- Python 3.10+
+- FastAPI, uvicorn, httpx
+
+## License
+
+GPL-3.0
